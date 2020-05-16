@@ -1,1 +1,38 @@
-<p>users works!</p>
+
+<div class="container">
+    <app-search-form (getUser)='searchUser($event)'></app-search-form>
+    <div class='error'>
+        <p>{{ user.error }}</p>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-6">
+                    <div>
+                        <img src="{{ user.avatar_url }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <h4>Github Username: {{user.login}}</h4>
+                    <hr>
+                    <p><i class="fa fa-file-o" style="font-size:18px"></i>&nbsp;&nbsp; Repositories:&nbsp;&nbsp; <span class="follow">{{user.repos}}</span></p>
+                    <hr>
+                    <p> <i class="fa fa-user" style="font-size:18px"></i>&nbsp;&nbsp; Following:&nbsp;&nbsp; <span class="follow">{{user.following}}</span></p>
+                    <hr>
+                    <p> <i class="fa fa-users"style="font-size:18px"></i>&nbsp;&nbsp; Followers:&nbsp;&nbsp; <span class="follow">{{user.followers}}</span></p>
+                    <hr>
+                    
+                </div>
+            </div>
+            
+            
+
+        </div>
+    </div>
+</div>
