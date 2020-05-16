@@ -9,18 +9,19 @@ import { User } from '../user/user';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-  @Output() searchUser = new EventEmitter<User>()
+  @Output() searchUser = new EventEmitter<any>()
 
-  completesearch:string
+  search:string
 
   constructor(public userservice:UserService) { }
 
-  getUser(completesearch){
-    this.searchUser.emit(completesearch)
-
+  getUser(){
+    this.searchUser.emit(this.search)
+    this.search=''
   }
 
   ngOnInit(): void {
+
   }
 
 }

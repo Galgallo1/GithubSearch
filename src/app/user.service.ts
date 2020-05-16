@@ -17,7 +17,7 @@ export class UserService {
   }
 
 
-  getUsername(search){
+  getUsername(search:string){
     interface ApiResponse{
      
       login:string

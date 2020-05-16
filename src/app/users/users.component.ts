@@ -10,19 +10,26 @@ import { environment } from '../../environments/environment'
 })
 export class UsersComponent implements OnInit {
 
-  user:User
+  user
 
   constructor(public userservice:UserService) { }
 
   searchUser(search){
-    this.userservice.getUsername(search)
+    this.userservice.getUsername(search).then(
+      (success)=>{
+        this.user = this.userservice.getUsername;
+      },
+      (error)=>{
+        console.log(error)
+      }
+    );    
   }
+
+    
 
   ngOnInit(): void {
     this.userservice.getUsername('Galgallo1')
-    this.user=this.userservice.user
-
-
+    
   }
 
 }
