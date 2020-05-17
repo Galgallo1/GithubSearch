@@ -10,25 +10,30 @@ import { environment } from '../../environments/environment'
 })
 export class UsersComponent implements OnInit {
 
-  user
-
+  user:User;
+  
+  
   constructor(public userservice:UserService) { }
+  
 
-  searchUser(search){
-    this.userservice.getUsername(search).then(
-      (success)=>{
-        this.user = this.userservice.getUsername;
-      },
-      (error)=>{
-        console.log(error)
-      }
-    );    
-  }
+  //searchUser(search){
+  //  this.userservice.getUsername(this.search).then(
+    //  (success)=>{
+      //  this.user = this.userservice.getUsername(search);
+      //},
+      //(error)=>{
+      //  console.log(error)
+      //}
+    //);    
+  //}
 
     
 
   ngOnInit(): void {
-    this.userservice.getUsername('Galgallo1')
+    
+    this.userservice.getUsername()
+    this.user=this.userservice.user
+    
     
   }
 

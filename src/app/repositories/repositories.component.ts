@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RepositoriesComponent implements OnInit {
 
-  constructor() { }
-
+  
   ngOnInit(): void {
   }
 

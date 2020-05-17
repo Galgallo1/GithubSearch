@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
+import { DateCountPipe } from './date-count.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SearchFormComponent } from './search-form/search-form.component';
     UsersComponent,
     NotFoundComponent,
     NavBarComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    DateCountPipe
   ],
   imports: [
     BrowserModule,
