@@ -13,43 +13,40 @@ export class UserService {
   user:User
   Searchurl:string='https://api.github.com/users/'
   constructor(private http:HttpClient) { 
-    this.user= new User('','','',0,0,0, new Date)
-    this.repo= new Repo('','','', new Date,0,'')
+    this.user= new User('','','','',0,0,0,'', new Date)
+    this.repo= new Repo('','','', new Date,0,0,'')
   }
 
 
-  getUsername(){
-    interface ApiResponse{
-     
-      login:string
-      avatar_url:any
-      followers:number
-      following:number
-      public_repos:number
-      created_at:Date
-      
+  searchUSer(searchName: string) {
+   
+    interface Responce {
+      url:string,
+      login: string;
+      html_url:string;
+      location:string
+      public_repos:number;
+      followers:number;
+      following:number;
+      avatar_url:string;
+      created_at:Date;
     }
-    let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>('https://api.github.com/users/Galgallo1'+'?access_token='+environment.ApiKey).toPromise().then(response=>{
-        this.user.login = response.login
-        this.user.avatar_url=response.avatar_url
-        this.user.followers=response.followers
-        this.user.following=response.following
-        this.user.repos=response.public_repos
-        this.user.joined=response.created_at
-        resolve()
-      },
-      error=>{
-        this.user.error = "Sorry, enter specific username or check your internet connection."
-        
 
-        reject(error)
-      })
-    })
-    return promise
+    return new Promise((resolve, reject) => {
+      this.http.get<Responce>('https://api.github.com/users/'+searchName+'?access_token='+environment.ApiKey).toPromise().then(
+        (result) => {
+          this.user = result;
+          console.log(this.user);
+          resolve();
+        },
+        (error) => {
+          console.log(error);
+          reject();
+        }
+      );
+    });
   }
-
-  getRepos(){
+  getReopos(searchName){
     interface Repos{
       name:string;
       html_url:string;
@@ -59,27 +56,17 @@ export class UserService {
       language:string;
       created_at:Date;
     }
-
-    let promise = new Promise((resolve,reject)=>{
-      this.http.get<Repos>('https://api.github.com/users/omwakwe/repos?order=created&sort=asc?access_token='+environment.ApiKey).toPromise().then(response=>{
-      this.repo.name=response.name
-      this.repo.created_at=response.created_at
-      this.repo.language=response.language
-      this.repo.forks=response.forks
-      this.repo.description=response.description
-      this.repo.html=response.html_url
-      
-      resolve();
-      
-      },
-      error=>{
-        this.user.error = "Sorry, enter specific username or check your internet connection."
-        
-
-        reject(error)
-      })
-    })
-    return promise 
-      
+    return new Promise((resolve,reject)=>{
+      this.http.get<Repos>('https://api.github.com/users/'+searchName+"/repos?order=created&sort=asc?access_token="+environment.ApiKey).toPromise().then(
+        (results) => {
+          this.repo = results;
+          resolve();
+        },
+        (error) => {
+          console.log(error);
+          reject();
+        }
+      );
+    });
   }
   }

@@ -11,32 +11,32 @@ import { Repo } from '../repo/repo';
 })
 export class UsersComponent implements OnInit {
 
-  user:User;
-  repo:Repo;
-  
-  
-  constructor(public userservice:UserService) { }
-  
-
-  //searchUser(search){
-  //  this.userservice.getUsername(this.search).then(
-    //  (success)=>{
-      //  this.user = this.userservice.getUsername(search);
-      //},
-      //(error)=>{
-      //  console.log(error)
-      //}
-    //);    
-  //}
-
-    
-
-  ngOnInit(): void {
-    
-    this.userservice.getUsername()
-    this.user=this.userservice.user
-    
-    
+  user: User;
+repo: Repo;
+  constructor(public myService: UserService, private repoService: UserService) {
   }
 
+  searchs(searchName) {
+    this.myService.searchUSer(searchName).then(
+      (success)=>{
+        this.user = this.myService.user;
+      },
+      (error)=>{
+        console.log(error)
+      }
+    );
+      this.repoService.getReopos(searchName).then(
+        (results)=>{
+          this.repo =this.repoService.repo
+          console.log(this.repo);
+        },
+        (error)=>{
+          console.log(error);
+        }
+      );
+  }
+
+  ngOnInit() {
+    this.searchs('Galgallo1');
+  }
 }
