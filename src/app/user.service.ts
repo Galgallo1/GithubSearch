@@ -74,7 +74,7 @@ export class UserService {
         reject(error)
       })
     })
-    return promise
+    return promise 
       
       
   }
