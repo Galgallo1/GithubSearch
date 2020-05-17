@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user/user'
 import { environment } from '../environments/environment'
-import { strict } from 'assert';
+import { Repo } from './repo/repo'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  repo:Repo
   user:User
   Searchurl:string='https://api.github.com/users/'
   constructor(private http:HttpClient) { 
     this.user= new User('','','',0,0,0, new Date)
-    
+    this.repo= new Repo('','','', new Date,0,'')
   }
 
 
@@ -62,7 +62,12 @@ export class UserService {
 
     let promise = new Promise((resolve,reject)=>{
       this.http.get<Repos>('https://api.github.com/users/Galgallo1/repos?order=created&sort=asc?access_token='+environment.ApiKey).toPromise().then(response=>{
-
+      this.repo.name=response.name
+      this.repo.created_at=response.created_at
+      this.repo.language=response.language
+      this.repo.forks=response.forks
+      this.repo.description=response.description
+      this.repo.html=response.html_url
       
 
       
