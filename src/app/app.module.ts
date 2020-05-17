@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { DateCountPipe } from './date-count.pipe';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DateCountPipe } from './date-count.pipe';
     NotFoundComponent,
     NavBarComponent,
     SearchFormComponent,
-    DateCountPipe
+    DateCountPipe,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
