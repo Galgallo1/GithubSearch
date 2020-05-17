@@ -13,7 +13,7 @@ export class UserService {
   user:User
   Searchurl:string='https://api.github.com/users/'
   constructor(private http:HttpClient) { 
-    this.user= new User('','','',0,0,0)
+    this.user= new User('','','',0,0,0, new Date)
     
   }
 
@@ -26,6 +26,7 @@ export class UserService {
       followers:number
       following:number
       public_repos:number
+      created_at:Date
       
     }
     let promise = new Promise((resolve,reject)=>{
@@ -35,6 +36,7 @@ export class UserService {
         this.user.followers=response.followers
         this.user.following=response.following
         this.user.repos=response.public_repos
+        this.user.joined=response.created_at
         resolve()
       },
       error=>{
