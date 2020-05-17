@@ -30,7 +30,7 @@ export class UserService {
       
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>('https://api.github.com/users/Galgallo1').toPromise().then(response=>{
+      this.http.get<ApiResponse>('https://api.github.com/users/Galgallo1'+'?access_token='+environment.ApiKey).toPromise().then(response=>{
         this.user.login = response.login
         this.user.avatar_url=response.avatar_url
         this.user.followers=response.followers
@@ -48,5 +48,33 @@ export class UserService {
     })
     return promise
   }
-  
-}
+
+  getRepos(){
+    interface Repos{
+      name:string;
+      html_url:string;
+      description:string;
+      forks:number;
+      watchers_count:number;
+      language:string;
+      created_at:Date;
+    }
+
+    let promise = new Promise((resolve,reject)=>{
+      this.http.get<Repos>('https://api.github.com/users/Galgallo1/repos?order=created&sort=asc?access_token='+environment.ApiKey).toPromise().then(response=>{
+
+      
+
+      
+      },
+      error=>{
+        this.user.error = "Sorry, enter specific username or check your internet connection."
+        
+
+        reject(error)
+      })
+    })
+    return promise
+      
+      
+  }
