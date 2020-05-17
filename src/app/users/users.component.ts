@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service'
 import { User } from '../user/user'
 import { environment } from '../../environments/environment'
+import { Repo } from '../repo/repo';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +12,7 @@ import { environment } from '../../environments/environment'
 export class UsersComponent implements OnInit {
 
   user:User;
+  repo:Repo;
   
   
   constructor(public userservice:UserService) { }

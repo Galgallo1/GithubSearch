@@ -28,13 +28,47 @@
                     <p> <i class="fa fa-users"style="font-size:18px"></i>&nbsp;&nbsp; Followers:&nbsp;&nbsp; <span class="follow">{{user.followers}}</span></p>
                     <hr>
                     <p> <i class="fa fa-users"style="font-size:18px"></i>&nbsp;&nbsp; Joined:&nbsp;&nbsp; <span class="follow">{{user.joined|dateCount}}</span></p>
-                    <hr>
-                    
+                    <hr>    
                 </div>
-            </div>
-            
-            
+            </div>       
+        </div>
+        
+    </div>
 
+    <div class="row">
+        <div class="text-center repos" id="reps">
+            <h2>Repositories</h2>
+          </div>
+        <div class="col-md-4">
+          <div class="card" appHighlight *ngFor="let repository of repo" style="width: 22rem;" class="repo">
+            <div class="card-body" >
+              <h5 class="card-title"><span class="top">Repo Name:</span> &nbsp;{{repository.name}} </h5>
+              <div class="card-text">
+                <hr>
+                <div class="desc"><span class="top">Description:</span> &nbsp;{{repository.description}} 
+                </div>
+                <hr>
+                <div class="card-subtitle mb-2">
+                    <span class="top">Language: </span> {{repository.language}}
+                </div>
+                <div class="card-subtitle mb-2"><span class="top">Created:&nbsp; <span id="created">{{repository.created_at | dateCount}}</span> &nbsp;  On:</span> &nbsp;{{repository.created_at | date}}
+                </div>
+              </div>
+              </div>
+              <div class="card-footer">
+                
+                <div class="btn-group" role="group" aria-label="Third group">
+                  <button class="btn btn-sm btn-outline-danger"><i class="fa fa-code-fork" style="font-size:16px"></i> &nbsp;<span class="forks">{{repository.forks}}</span></button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Third group">
+                  <button class="btn btn-sm btn-success" id="visit"><a href="{{repository.html}}" class="card-link">VIEW &nbsp; <i class="fa fa-arrow-circle-right" style="font-size:16px"></i></a> </button> 
+                </div>
+              </div>
+            </div>
+          
+
+        
         </div>
     </div>
+    
 </div>
